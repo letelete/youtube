@@ -16,22 +16,29 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const RememberThingsLazyImport = createFileRoute('/remember-things')()
 const IndexLazyImport = createFileRoute('/')()
+const rememberThingsRememberThingsLazyImport = createFileRoute(
+  '/(remember-things)/remember-things',
+)()
 
 // Create/Update Routes
-
-const RememberThingsLazyRoute = RememberThingsLazyImport.update({
-  path: '/remember-things',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/remember-things.lazy').then((d) => d.Route),
-)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const rememberThingsRememberThingsLazyRoute =
+  rememberThingsRememberThingsLazyImport
+    .update({
+      path: '/remember-things',
+      getParentRoute: () => rootRoute,
+    } as any)
+    .lazy(() =>
+      import('./routes/(remember-things)/remember-things.lazy').then(
+        (d) => d.Route,
+      ),
+    )
 
 // Populate the FileRoutesByPath interface
 
@@ -44,11 +51,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/remember-things': {
+    '/(remember-things)/remember-things': {
       id: '/remember-things'
       path: '/remember-things'
       fullPath: '/remember-things'
-      preLoaderRoute: typeof RememberThingsLazyImport
+      preLoaderRoute: typeof rememberThingsRememberThingsLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -58,7 +65,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
-  RememberThingsLazyRoute,
+  rememberThingsRememberThingsLazyRoute,
 })
 
 /* prettier-ignore-end */
@@ -77,7 +84,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "index.lazy.tsx"
     },
     "/remember-things": {
-      "filePath": "remember-things.lazy.tsx"
+      "filePath": "(remember-things)/remember-things.lazy.tsx"
     }
   }
 }

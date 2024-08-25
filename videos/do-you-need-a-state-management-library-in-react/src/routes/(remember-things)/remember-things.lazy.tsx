@@ -4,7 +4,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 
 import { Counter } from '@/components/counter';
 
-export const Route = createLazyFileRoute('/remember-things')({
+export const Route = createLazyFileRoute('/(remember-things)/remember-things')({
   component: RememberThingsPage,
 });
 
