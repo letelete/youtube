@@ -1,6 +1,13 @@
 import { forwardRef } from 'react';
 
-import { Loader, LucideProps, Moon, Sun, SunMoon } from 'lucide-react';
+import {
+  Loader,
+  LucideProps,
+  Moon,
+  ShoppingCart,
+  Sun,
+  SunMoon,
+} from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
@@ -26,12 +33,6 @@ const Icon = forwardRef<SVGSVGElement, IconProps>(
       <IconElement
         ref={ref}
         className={cn('aspect-square', className)}
-        style={{
-          minWidth: size,
-          maxWidth: size,
-          minHeight: size,
-          maxHeight: size,
-        }}
         strokeWidth={1}
         size={size}
         absoluteStrokeWidth
@@ -46,10 +47,11 @@ Icon.displayName = 'Icon';
 /* -----------------------------------------------------------------------------------------------*/
 
 const icons = new Map([
-  ['sun', Sun],
-  ['moon', Moon],
-  ['sun-moon', SunMoon],
   ['loader', Loader],
+  ['moon', Moon],
+  ['shopping-cart', ShoppingCart],
+  ['sun-moon', SunMoon],
+  ['sun', Sun],
 ] as const satisfies readonly (readonly [string, React.FC<LucideProps>])[]);
 
 /* -----------------------------------------------------------------------------------------------*/

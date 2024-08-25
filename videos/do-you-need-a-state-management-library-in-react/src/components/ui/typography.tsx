@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
  * Typography
  * -----------------------------------------------------------------------------------------------*/
 
-const typographyVariants = cva(cn('text-left tracking-normal'), {
+const typographyVariants = cva(cn('text-left font-normal tracking-normal'), {
   variants: {
     variant: {
       heading:

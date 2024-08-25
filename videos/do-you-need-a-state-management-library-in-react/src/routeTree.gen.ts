@@ -20,6 +20,9 @@ const IndexLazyImport = createFileRoute('/')()
 const rememberThingsRememberThingsLazyImport = createFileRoute(
   '/(remember-things)/remember-things',
 )()
+const addToCartWithUsestateAddToCartWithUsestateLazyImport = createFileRoute(
+  '/(add-to-cart-with-usestate)/add-to-cart-with-usestate',
+)()
 
 // Create/Update Routes
 
@@ -40,6 +43,18 @@ const rememberThingsRememberThingsLazyRoute =
       ),
     )
 
+const addToCartWithUsestateAddToCartWithUsestateLazyRoute =
+  addToCartWithUsestateAddToCartWithUsestateLazyImport
+    .update({
+      path: '/add-to-cart-with-usestate',
+      getParentRoute: () => rootRoute,
+    } as any)
+    .lazy(() =>
+      import(
+        './routes/(add-to-cart-with-usestate)/add-to-cart-with-usestate.lazy'
+      ).then((d) => d.Route),
+    )
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -49,6 +64,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/(add-to-cart-with-usestate)/add-to-cart-with-usestate': {
+      id: '/add-to-cart-with-usestate'
+      path: '/add-to-cart-with-usestate'
+      fullPath: '/add-to-cart-with-usestate'
+      preLoaderRoute: typeof addToCartWithUsestateAddToCartWithUsestateLazyImport
       parentRoute: typeof rootRoute
     }
     '/(remember-things)/remember-things': {
@@ -65,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
+  addToCartWithUsestateAddToCartWithUsestateLazyRoute,
   rememberThingsRememberThingsLazyRoute,
 })
 
@@ -77,11 +100,15 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/add-to-cart-with-usestate",
         "/remember-things"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/add-to-cart-with-usestate": {
+      "filePath": "(add-to-cart-with-usestate)/add-to-cart-with-usestate.lazy.tsx"
     },
     "/remember-things": {
       "filePath": "(remember-things)/remember-things.lazy.tsx"

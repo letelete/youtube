@@ -5,14 +5,14 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { Counter } from '@/components/counter';
 
 export const Route = createLazyFileRoute('/(remember-things)/remember-things')({
-  component: RememberThingsPage,
+  component: Page,
 });
 
-function RememberThingsPage() {
+function Page() {
   const [counter, setCounter] = useState(0);
 
   return (
-    <div className='container flex min-h-screen w-full flex-col items-center justify-center overflow-hidden p-2'>
+    <div className='container flex min-h-screen flex-col items-center justify-center overflow-hidden p-2'>
       <Counter
         minValue={1}
         maxValue={10}

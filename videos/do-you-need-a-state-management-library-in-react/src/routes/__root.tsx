@@ -15,10 +15,14 @@ function Root() {
   return (
     <>
       <div className='flex justify-between gap-1 p-2'>
-        <nav className='flex gap-1'>
+        <nav className='flex gap-1 overflow-auto'>
           <LinkButton to='/'>Home</LinkButton>
 
           <LinkButton to='/remember-things'>Remember things</LinkButton>
+
+          <LinkButton to='/add-to-cart-with-usestate'>
+            Add to cart with useState
+          </LinkButton>
         </nav>
 
         <div>
