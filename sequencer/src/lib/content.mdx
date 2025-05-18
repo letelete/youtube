@@ -1,0 +1,69 @@
+## !!steps 1
+
+```tsx !
+import { useState } from 'react';
+
+export function CounterComponent() {
+  const [,] = useState(0);
+
+  return (
+    <>
+    </>
+  );
+}
+CounterComponent.displayName = 'CounterComponent';
+```
+
+## !!steps 2
+
+```tsx !
+import { useState } from 'react';
+
+export function CounterComponent() {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <>
+    </>
+  );
+}
+CounterComponent.displayName = 'CounterComponent';
+```
+
+## !!steps 3
+
+```tsx !
+import { useState } from 'react';
+
+export function CounterComponent() {
+  // !mark[/counter/] 
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <>
+      <button onClick={() => setCounter((value) => value - 1)}>{'-1'}</button>
+      <button onClick={() => setCounter((value) => value + 1)}>{'+1'}</button>
+    </>
+  );
+}
+CounterComponent.displayName = 'CounterComponent';
+```
+
+## !!steps 4
+
+```tsx !
+import { useState } from 'react';
+
+export function CounterComponent() {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <>
+      <button onClick={() => setCounter((value) => value - 1)}>{'-1'}</button>
+      <p>{counter}</p>
+      <button onClick={() => setCounter((value) => value + 1)}>{'+1'}</button>
+    </>
+  );
+}
+CounterComponent.displayName = 'CounterComponent';
+```
